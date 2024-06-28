@@ -119,8 +119,8 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 	return os << obj.get_str();
 }
 
-#define CONSTRUCTORS_CHECK
-
+//#define CONSTRUCTORS_CHECK
+#define MOVE_ASSIGNMENT_CHECK
 
 void main()
 {
@@ -144,5 +144,16 @@ void main()
 	str5.print();
 	cout << str5 << endl;
 #endif // CONSTRUCTORS_CHECK
+
+#ifdef MOVE_ASSIGNMENT_CHECK
+	String str1 = "Hello", str2 = "World";
+	String str3 = str1 + str2;
+	String str4;
+	str4 = std::move(str3);
+	cout << delimiter << endl;
+	cout << str4 << endl;
+	cout << delimiter << endl;
+#endif // MOVE_ASSIGNMENT_CHECK
+
 
 }
